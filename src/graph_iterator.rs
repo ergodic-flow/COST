@@ -1,6 +1,6 @@
 use std::io::Read;
-use hilbert_curve::BytewiseCached;
-use typedrw::TypedMemoryMap;
+use crate::hilbert_curve::BytewiseCached;
+use crate::typedrw::TypedMemoryMap;
 
 pub trait EdgeMapper {
     fn map_edges(&self, action: impl FnMut(u32, u32));

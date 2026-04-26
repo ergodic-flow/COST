@@ -1,11 +1,42 @@
 [package]
-
 name = "COST"
-version = "0.0.1"
-authors = ["Frank McSherry <fmcsherry@me.com>"]
+version = "0.1.0"
+edition = "2024"
 
 [dependencies]
-docopt="*"
-byteorder="*"
-memmap="0.5"
-lz4="*"
+byteorder = "1.5.0"
+docopt = "1.1.1"
+lz4 = "1.28.1"
+memmap = "0.7.0"
+
+[[bin]]
+name = "bfs_cc2012"
+path = "src/bin/bfs_cc2012.rs"
+
+[[bin]]
+name = "compressed"
+path = "src/bin/compressed.rs"
+
+[[bin]]
+name = "label_prop"
+path = "src/bin/label_prop.rs"
+
+[[bin]]
+name = "pagerank"
+path = "src/bin/pagerank.rs"
+
+[[bin]]
+name = "stats"
+path = "src/bin/stats.rs"
+
+[[bin]]
+name = "to_hilbert"
+path = "src/bin/to_hilbert.rs"
+
+[[bin]]
+name = "to_vertex"
+path = "src/bin/to_vertex.rs"
+
+[[bin]]
+name = "union_find"
+path = "src/bin/union_find.rs"

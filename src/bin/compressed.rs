@@ -2,8 +2,8 @@
 
 extern crate lz4;
 extern crate byteorder;
-
 extern crate docopt;
+
 use docopt::Docopt;
 
 extern crate COST;
@@ -16,14 +16,16 @@ use COST::graph_iterator::ReaderMapper;
 use std::io::{BufReader, BufWriter, stdin, stdout};
 use byteorder::{WriteBytesExt, LittleEndian};
 
-static USAGE: &'static str = "
+static USAGE: &str = "
 Usage: compressed parse_to_hilbert
        compressed merge <source>...
        compressed scan
 ";
 
 fn main() {
-    let args = Docopt::new(USAGE).and_then(|dopt| dopt.parse()).unwrap_or_else(|e| e.exit());
+    let args = Docopt::new(USAGE)
+        .and_then(|dopt: Docopt| dopt.parse())
+        .unwrap_or_else(|e| e.exit());
 
     if args.get_bool("parse_to_hilbert") {
         let reader_mapper = ReaderMapper { reader: || BufReader::new(stdin())};
@@ -40,8 +42,9 @@ fn main() {
     if args.get_bool("merge") {
         let mut writer = BufWriter::new(stdout());
         let mut vector = Vec::new();
-        for &source in args.get_vec("<source>").iter() {
-            vector.push(Decoder::new(lz4::Decoder::new(BufReader::new(File::open(source).unwrap())).unwrap()));
+        for source in args.get_vec("<source>") {
+            let s = source.to_string();
+            vector.push(Decoder::new(lz4::Decoder::new(BufReader::new(File::open(&s).unwrap())).unwrap()));
         }
 
         let mut prev = 0u64;
