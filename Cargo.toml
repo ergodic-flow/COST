@@ -26,6 +26,10 @@ name = "pagerank"
 path = "src/bin/pagerank.rs"
 
 [[bin]]
+name = "hits"
+path = "src/bin/hits.rs"
+
+[[bin]]
 name = "stats"
 path = "src/bin/stats.rs"
 
